@@ -1,0 +1,298 @@
+:root {
+  --color-0: black;
+  --color-01: white;
+  --color-1: rgb(0, 0, 0, 0.4);
+  --color-2: rgb(144, 144, 144, 0.6);
+  --color-3: rgb(255, 255, 255, 0.6);
+  --color-4: rgba(8, 220, 235, 0.767);
+  --color-5: rgba(250,235,215);
+  --letra-1: white;
+  --po-1: left;
+  --po-2: right;
+}
+
+@keyframes fondo-mov-S {
+  0%, 100% {
+    background-position: var(--po-1);
+    background-image: linear-gradient(to left, var(--color-3), var(--color-4));
+  }
+  50% {
+    background-position: var(--po-2);
+    background-image: linear-gradient(to left, var(--color-3), var(--color-4));
+  }
+}
+@keyframes letra-mov-P {
+  0%, 100% {
+    background-position: var(--po-1);
+    background-image: linear-gradient(to left, var(--color-0), var(--color-01));
+  }
+  50% {
+    background-position: var(--po-2);
+    background-image: linear-gradient(to left, var(--color-0), var(--color-01));
+  }
+}
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100vw;
+  height: 100vh;
+  background-size: 250%;
+  background-image: linear-gradient(to top, var(--color-1), var(--color-2));
+}
+
+.title {
+  position: relative;
+  font-size: 8em;
+  font-weight: 900;
+  color: transparent;
+  background-size: 950%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  border-top: 2px solid var(--color-5);
+  padding: 0.1em;
+  animation: letra-mov-P 15s ease infinite;
+}
+.title::before {
+  position: absolute;
+  bottom: 100%;
+  left: calc(100px - 0.1em);
+  content: "";
+  background-color: var(--color-01);
+  width: 50px;
+  height: 50px;
+  border-radius: 10px 50px;
+  background-size: 950%;
+}
+.title::after {
+  position: absolute;
+  bottom: 100%;
+  right: 100px;
+  content: "";
+  background-color: var(--color-01);
+  width: 50px;
+  height: 50px;
+  border-radius: 10px 50px;
+  transform: rotateY(180deg);
+  background-size: 950%;
+}
+
+.inicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-size: 950%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  padding: 1em;
+  animation: letra-mov-P 15s ease infinite;
+}
+.inicio p {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: transparent;
+}
+
+.btn {
+  background-size: 300%;
+  padding: 1em;
+  border-radius: 1.2em;
+  border: 2px solid black;
+  cursor: pointer;
+  animation: fondo-mov-S 10s ease infinite;
+  transition: transform 0.4s ease;
+}
+.btn:hover {
+  transform: scale(1.1);
+}
+.btn .link {
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 800;
+  color: var(--letra-2);
+}
+
+.main-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  padding-top: 4em;
+  width: 100vw;
+  background-position: var(--po-1);
+  background-image: linear-gradient(to top, var(--color-1), var(--color-2));
+}
+
+.btn-home {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  padding: 1em;
+  border-radius: 1.2em;
+  border: 2px solid white;
+  width: 150px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: transform 0.4s ease;
+}
+.btn-home:hover {
+  transform: scale(1.1);
+}
+.btn-home .link {
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 800;
+  color: var(--letra-1);
+}
+
+.container-game {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 1em;
+  padding-top: 4em;
+  justify-content: center;
+}
+
+.scores {
+  position: absolute;
+  top: 0;
+  left: 1.5%;
+  font-size: 2em;
+  font-weight: 800;
+  font-style: italic;
+  padding: 0.2em;
+  color: var(--letra-1);
+}
+
+.card {
+  flex: none;
+  background-color: black;
+  width: 220px;
+  height: 350px;
+  border-radius: 1em;
+  border: 2px solid black;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.activa {
+  transform: rotateY(-180deg);
+}
+
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  pointer-events: none;
+  border-radius: 20px;
+  transform: rotateY(180deg);
+  font-size: 2.9em;
+  font-weight: 900;
+}
+
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  pointer-events: none;
+  border-radius: 20px;
+  background-image: url(https://i.pinimg.com/1200x/c9/7f/e1/c97fe1163a62ead1cac85d7da5bea95f.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: white;
+}
+
+.winner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.6));
+  background-color: black;
+  width: 60%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 1em;
+  border-radius: 1em;
+  cursor: pointer;
+  transition: background-color 0.6s ease;
+}
+@keyframes rotate {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(360deg);
+  }
+}
+.winner:hover {
+  background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.6));
+  background-color: white;
+  border: 2px solid black;
+}
+.winner h1 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  font-size: 3em;
+  font-weight: 900;
+  color: blanchedalmond;
+  text-shadow: 4px 2px 1px black;
+  margin-top: 20px;
+  transition: color 0.4s ease;
+}
+.winner h1::before {
+  position: absolute;
+  top: 210%;
+  content: "G";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  padding: 0.1em;
+  background-color: gold;
+  border-radius: 100%;
+  border: 2px solid black;
+  transform-style: preserve-3d;
+  animation: rotate 4s linear infinite;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 0px 1px black, -2px 0px 1px black, 0px 1px 1px black, 0px -1px 1px black;
+}
+.winner .btn {
+  margin-top: 200px;
+  margin-bottom: 20px;
+  width: 50%;
+  font-size: 0.9em;
+  font-weight: 800;
+  animation: fondo-mov-S 4s ease infinite;
+}/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,348 @@
+:root{
+    // colores-fondo
+    --color-0: black;
+    --color-01: white;
+    --color-1: rgb(0, 0, 0, 0.4);
+    --color-2: rgb(144, 144, 144, 0.6);
+    --color-3: rgb(255, 255, 255, 0.6);
+    --color-4: rgba(8, 220, 235, 0.767);
+    --color-5: rgba(250,235,215);
+
+
+    //Colores de letra 
+    --letra-1: white;
+
+    // posicionmiento-fondo
+    --po-1: left;
+    --po-2: right;
+
+}
+
+
+// objectos de colores
+$colors-fondo:(
+    // gradients
+    color-1: linear-gradient(to left, var(--color-3), var(--color-4)),
+    color-2: linear-gradient(to top, var(--color-1), var(--color-2)),
+    color-3: linear-gradient(to left, var(--color-0), var(--color-01)),
+);
+
+// Animaciones
+
+@keyframes fondo-mov-S {
+    0%, 100%{
+        background-position: var(--po-1);
+        background-image: map-get($map: $colors-fondo, $key: color-1);
+    }
+
+    50%{
+        background-position: var(--po-2);
+        background-image: map-get($map: $colors-fondo, $key: color-1);
+    }
+}
+
+@keyframes letra-mov-P {
+    0%, 100%{
+        background-position: var(--po-1);
+        background-image: map-get($map: $colors-fondo, $key: color-3);
+    }
+
+    50%{
+        background-position: var(--po-2);
+        background-image: map-get($map: $colors-fondo, $key: color-3);
+    }
+}
+
+@mixin calculo($numero, $times: none){
+    @if($numero == 1){
+        background-position: var(--po-1);
+        background-image: map-get($map: $colors-fondo, $key: color-2);
+    } @else if ($numero == 2) {
+        animation: fondo-mov-S $times ease infinite;
+    } @else if($numero == 3){
+        animation: letra-mov-P $times ease infinite;
+    }
+}
+
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100vw;
+    height: 100vh;
+    background-size: 250%;
+    // animation: fondo-mov 10s ease infinite;
+    background-image: map-get($map: $colors-fondo, $key: color-2);
+}
+
+.title{
+    position: relative;
+    font-size: 8em;
+    font-weight: 900;
+    color: transparent;
+    background-size: 950%;
+    background-clip: text;
+    border-top: 2px solid var(--color-5);
+    // border-style: dotted;
+    padding: 0.1em;
+    @include calculo(3, 15s);
+
+    &::before{
+        position: absolute;
+        bottom: 100%;
+        left: calc(100px - 0.1em);
+        content: '';
+        background-color: var(--color-01);
+        width: 50px;
+        height: 50px;
+        border-radius:  10px 50px ;
+        background-size: 950%;
+    }
+
+    &::after{
+        position: absolute;
+        bottom: 100%;
+        right: 100px;
+        content: '';
+        background-color: var(--color-01);
+        width: 50px;
+        height: 50px;
+        border-radius:  10px 50px ;
+        transform: rotateY(180deg);
+        background-size: 950%;
+    }
+}
+
+.inicio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-size: 950%;
+    // border: 2px solid black;
+    // background-color: var(--color-1);
+    background-clip: text;
+    padding: 1em;
+    @include calculo(3, 15s);
+
+    p{
+        font-size: 1.5em;
+        font-weight: 600;
+        color: transparent;
+        // mix-blend-mode: difference;
+    }
+}
+
+.btn{
+    background-size: 300%;
+    padding: 1em;
+    border-radius: 1.2em;
+    border: 2px solid black;
+    cursor: pointer;
+    @include calculo(2, 10s);
+    transition: transform .4s ease;
+    
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    .link{
+        text-decoration: none;
+        font-size: 1em;
+        font-weight: 800;
+        color: var(--letra-2);
+    }
+}
+
+.main-game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    padding-top: 4em;
+    width: 100vw;
+    @include calculo(1, 10s);
+}
+
+.btn-home{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    padding: 1em;
+    border-radius: 1.2em;
+    border: 2px solid white;
+    width: 150px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: transform .4s ease;
+    
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    .link{
+        text-decoration: none;
+        font-size: 1em;
+        font-weight: 800;
+        color: var(--letra-1);
+    }
+}
+
+.container-game{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    // background-color: red;
+    max-width: 100%;
+    height: fit-content;
+    padding: 1em;
+    padding-top: 4em;
+    justify-content: center;
+}
+
+.scores{
+    // background-color: aqua;
+    position: absolute;
+    top: 0;
+    left: 1.5%;
+    font-size: 2em;
+    font-weight: 800;
+    font-style: italic;
+    padding: 0.2em;
+    color: var(--letra-1);
+}
+
+.card{
+    flex: none;
+    background-color: black;
+    width: 220px;
+    height: 350px;
+    border-radius: 1em;
+    border: 2px solid black;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transition: transform .4s ease;
+}
+
+.activa{
+    transform: rotateY(-180deg);
+}
+
+@mixin tarjetas(){
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+.card-face{
+    @include tarjetas();
+    transform: rotateY(180deg);
+    font-size: 2.9em;
+    font-weight: 900;
+}
+
+.card-back{
+    @include tarjetas();
+    background-image: url(https://i.pinimg.com/1200x/c9/7f/e1/c97fe1163a62ead1cac85d7da5bea95f.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+
+}
+
+.winner{
+
+    @keyframes rotate {
+        0%,100%{
+            transform: rotateY(0deg);
+        }
+
+        50%{
+            transform: rotateY(360deg);
+        }
+    }
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, rgb(0, 0, 0, .6), rgb(255, 255, 255, .6));
+    background-color: black;
+    width: 60%;
+    height: fit-content;
+    padding: 1em;
+    border-radius: 1em;
+    cursor: pointer;
+    transition: background-color .6s ease;
+
+    &:hover{
+    background-image: linear-gradient(-180deg, rgb(0, 0, 0, .6), rgb(255, 255, 255, .6));
+    background-color: white;    
+    border: 2px solid black;
+    }
+
+    h1{
+        display: flex;
+        justify-content: center;
+        position: relative;
+        font-size: 3em;
+        font-weight: 900;
+        color: blanchedalmond;
+        text-shadow: 4px 2px 1px black;
+        margin-top: 20px;
+        transition: color .4s ease;
+
+        &::before{
+            position: absolute;
+            top: 210%;
+            content: 'G';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            padding: 0.1em;
+            background-color: gold;
+            border-radius: 100%;
+            border: 2px solid black;
+            transform-style: preserve-3d;
+            animation: rotate 4s linear infinite;
+            box-shadow:  0px 4px 10px rgba(0, 0, 0, 0.8);
+            text-shadow: 2px 0px 1px black,
+            -2px 0px 1px black,
+            0px 1px 1px black,
+            0px -1px 1px black;
+        }
+    }
+
+    .btn{
+        margin-top: 200px;
+        margin-bottom: 20px;
+        width: 50%;
+        font-size: .9em;
+        font-weight: 800;
+        @include calculo(2, 4s);
+    }
+}
+
+
+
+
