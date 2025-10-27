@@ -9,8 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "clean": "rimraf dist",
-    "predeploy": "pnpm run clean && pnpm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist",
+    "mostrar": "echo 'es para colocar texto en consola, tambien se usa como comando en windows, pero se debe usar comillas dobles'"
   },
   "dependencies": {
     "react": "^19.1.1",
